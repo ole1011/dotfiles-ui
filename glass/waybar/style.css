@@ -1,0 +1,168 @@
+/* palette */
+@define-color glass-bg alpha(#2c2525, 0.45);
+@define-color glass-border rgba(255, 255, 255, 0.20);
+@define-color glass-hover rgba(255, 255, 255, 0.06);
+@define-color text #e6d9db;
+@define-color text-dim alpha(#e6d9db, 0.75);
+@define-color accent #7aa2f7;
+@define-color warning #ffb86c;
+@define-color danger #ff6b6b;
+
+/* base */
+* {
+  font-family: "CaskaydiaMono Nerd Font Propo", "JetBrainsMono Nerd Font", Inter, "SF Pro Text", "Noto Sans", monospace, sans-serif;
+  font-size: 12px;
+  min-height: 0;
+  padding: 0;
+}
+
+window#waybar {
+  background: transparent;
+  color: @text;
+}
+
+/* islands */
+.modules-left,
+.modules-center,
+.modules-right {
+  background: @glass-bg;
+  border: 1px solid @glass-border;
+  border-radius: 16px;
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.25);
+  padding: 4px 6px;
+  /* tighter */
+}
+
+.modules-left {
+  margin-left: 4px;
+}
+
+.modules-center {
+  margin: 0 4px;
+}
+
+.modules-right {
+  margin-right: 4px;
+}
+
+/* widgets (global) */
+#workspaces button,
+#clock,
+#pulseaudio,
+#network,
+#cpu,
+#memory,
+#temperature,
+#window,
+#bluetooth,
+#custom-nowplaying {
+  padding: 4px 6px;
+  /* tighter */
+  border-radius: 9px;
+  margin: 0 2px;
+  /* tighter */
+  background: transparent;
+  color: @text;
+}
+
+#workspaces button:hover,
+#clock:hover,
+#pulseaudio:hover,
+#network:hover,
+#cpu:hover,
+#memory:hover,
+#temperature:hover,
+#window:hover,
+#bluetooth:hover,
+#custom-nowplaying:hover {
+  background: @glass-hover;
+}
+
+/* make the gap between workspaces and window tiny */
+.modules-left>*:not(:last-child) {
+  margin-right: 2px;
+}
+
+/* left group only */
+.modules-center>*:not(:last-child),
+.modules-right>*:not(:last-child) {
+  margin-right: 4px;
+}
+
+/* focus/active press */
+#bluetooth:active,
+#pulseaudio:active,
+#network:active {
+  box-shadow: inset 0 0 0 9999px alpha(@accent, 0.10);
+}
+
+#workspaces button:focus,
+#clock:focus,
+#pulseaudio:focus,
+#network:focus,
+#cpu:focus,
+#memory:focus,
+#temperature:focus,
+#bluetooth:focus,
+#custom-nowplaying:focus {
+  box-shadow: inset 0 0 0 2px alpha(@accent, 0.35);
+  border-radius: 9px;
+}
+
+/* workspaces: smallest reasonable hitbox */
+#workspaces {
+  padding: 0 1px;
+}
+
+#workspaces button {
+  color: @text-dim;
+  padding: 3px 6px;
+  /* extra tight */
+  margin: 0 1px;
+  /* icons closer together */
+}
+
+#workspaces button.active {
+  background: alpha(#e6d9db, 0.10);
+  color: @text;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.20), 0 2px 8px rgba(0, 0, 0, 0.12);
+}
+
+#workspaces button.urgent {
+  background: rgba(255, 59, 48, 0.28);
+  color: white;
+  box-shadow: inset 0 0 0 1px rgba(255, 59, 48, 0.45);
+}
+
+/* window title pill kept compact so it hugs workspaces */
+#window {
+  min-width: 160px;
+  /* slightly smaller */
+  color: @text;
+  background: alpha(#e6d9db, 0.03);
+  border-radius: 7px;
+  margin-left: 1px;
+  /* almost no gap from workspaces */
+}
+
+/* compact modules text/icon look (no extra padding) */
+#clock {
+  font-weight: 600;
+}
+
+#pulseaudio.muted {
+  opacity: 0.75;
+}
+
+#network.disconnected {
+  color: @warning;
+  opacity: 0.9;
+}
+
+/* tooltips */
+tooltip {
+  background: alpha(#2c2525, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 10px;
+  color: @text;
+}

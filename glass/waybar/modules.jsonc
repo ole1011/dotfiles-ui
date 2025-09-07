@@ -1,0 +1,110 @@
+{
+    "hyprland/workspaces": {
+        "disable-scroll": false,
+        "format": "{icon}",
+        "on-scroll-up": "hyprctl dispatch workspace e+1",
+        "on-scroll-down": "hyprctl dispatch workspace e-1",
+        "on-click": "activate",
+        "format-icons": {
+            "default": "",
+            "active": "",
+            "urgent": ""
+        },
+        "persistent-workspaces": {
+            "*": 6
+        },
+        "sort-by-number": true
+    },
+    "hyprland/window": {
+        "max-length": 60,
+        "separate-outputs": false,
+        "format": "{title}"
+    },
+    "clock": {
+        "timezone": "Europe/Berlin",
+        "interval": 1,
+        "format": "{:%a, %d %b  %H:%M:%S}",
+        "tooltip": true,
+        "tooltip-format": "<tt><big><big>{calendar}</big></big></tt>",
+        "calendar": {
+            "mode": "month",
+            "weeks-pos": "",
+            "format": {
+                "today": "<span foreground='#7aa2f7' weight='heavy'><u>{}</u></span>"
+            }
+        },
+        "actions": {
+            "on-click-right": "mode",
+            "on-scroll-up": "shift_down",
+            "on-scroll-down": "shift_up"
+        }
+    },
+    "bluetooth": {
+        "on-click": "blueberry",
+        "tooltip": true,
+        "format": "󰂲",
+        "format-on": "{icon}",
+        "format-off": "{icon}",
+        "format-connected": "{icon} {num_connections}",
+        "format-icons": {
+            "on": "󰂯",
+            "off": "󰂲",
+            "connected": "󰂱"
+        },
+        "tooltip-format": "{num_connections} connected",
+        "tooltip-format-connected": "{num_connections} connected\n\n{device_enumerate}",
+        "tooltip-format-enumerate-connected": "{device_alias}"
+    },
+    "network": {
+        "format-wifi": "  {signalStrength}%",
+        "format-ethernet": "󰈀 {ifname}",
+        "format-disconnected": " Offline",
+        "tooltip-format": "{ifname} via {gwaddr}\nUp: {bandwidthUpBits}\nDown: {bandwidthDownBits}",
+        "on-click": "alacritty --class=Impala -e impala"
+    },
+    "pulseaudio": {
+        "scroll-step": 2,
+        "format": "{icon} {volume}%",
+        "format-muted": "󰝟 Mute",
+        "format-icons": {
+            "headphones": "",
+            "default": [
+                "",
+                "",
+                ""
+            ]
+        },
+        "on-click": "alacritty --class=Wiremix -e wiremix",
+        "on-scroll-up": "pamixer -i 2",
+        "on-scroll-down": "pamixer -d 2",
+        "on-click-right": "pamixer -t"
+    },
+    "temperature": {
+        "critical-threshold": 85,
+        "format": " {temperatureC}°C",
+        "hwmon-path": "/sys/class/thermal/thermal_zone0/temp",
+        "tooltip": true,
+        "interval": 5
+    },
+    "cpu": {
+        "format": " {load}%",
+        "tooltip": true,
+        "interval": 2,
+        "on-click": "alacritty -e btop"
+    },
+    "memory": {
+        "format": " {used:0.0f}G",
+        "tooltip-format": "Used: {used:0.1f}G / {total:0.1f}G\nSwap: {swapUsed:0.1f}G / {swapTotal:0.1f}G",
+        "interval": 5,
+        "on-click": "alacritty -e btop"
+    },
+    "custom/nowplaying": {
+        "exec": "playerctl metadata --format '{{title}} — {{artist}}' 2>/dev/null | sed -E 's/&/\\&amp;/g; s/</\\&lt;/g; s/>/\\&gt;/g; s/\"/\\&quot;/g; s/'\\''/\\&apos;/g'",
+        "interval": 2,
+        "format": "󰝚 {}",
+        "max-length": 35,
+        "on-click": "playerctl play-pause",
+        "on-scroll-up": "playerctl previous",
+        "on-scroll-down": "playerctl next"
+    }
+}
