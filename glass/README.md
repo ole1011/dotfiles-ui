@@ -4,5 +4,5 @@
 ![glass preview](image.png)
 
 ## files
-[waybar](waybar)
+[waybar](waybar)<br>
 [hyprland](hypr)
